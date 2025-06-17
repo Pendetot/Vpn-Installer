@@ -375,6 +375,14 @@ wget -O addhost "https://${akbarvpn}/addhost.sh"
 wget -O slhost "https://${akbarvpn}/slhost.sh"
 wget -O about "https://${akbarvpn}/about.sh"
 wget -O menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/update/menu.sh"
+wget -O ssh-menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/ssh-menu.sh"
+wget -O vpn-menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/vpn-menu.sh"
+wget -O advanced-menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/advanced-menu.sh"
+wget -O xray-menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/xray-menu.sh"
+wget -O system-menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/system-menu.sh"
+wget -O service-status "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/service-status.sh"
+wget -O auto-menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/auto-menu.sh"
+wget -O setup-auto-launch "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/setup-auto-launch.sh"
 wget -O addssh "https://${akbarvpn}/addssh.sh"
 wget -O trialssh "https://${akbarvpn}/trialssh.sh"
 wget -O delssh "https://${akbarvpn}/delssh.sh"
@@ -471,6 +479,14 @@ chmod +x portsshws
 chmod +x slhost
 chmod +x addhost
 chmod +x menu
+chmod +x ssh-menu
+chmod +x vpn-menu
+chmod +x advanced-menu
+chmod +x xray-menu
+chmod +x system-menu
+chmod +x service-status
+chmod +x auto-menu
+chmod +x setup-auto-launch
 chmod +x addssh
 chmod +x trialssh
 chmod +x delssh
