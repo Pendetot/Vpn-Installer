@@ -56,11 +56,18 @@ echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━�
 echo -e "${GREEN}12${RESET}${WHITE}.${RESET} Info Script Auto Install"
 echo ""
 
+# Auto-Update System
+echo -e "${WHITE}${BOLD}${GREEN}🔄 Auto-Update System${RESET}"
+echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo -e "${GREEN}13${RESET}${WHITE}.${RESET} 📊 Update Status           ${GREEN}14${RESET}${WHITE}.${RESET} 🔍 Check for Updates"
+echo -e "${GREEN}15${RESET}${WHITE}.${RESET} ⚡ Force Update            ${GREEN}16${RESET}${WHITE}.${RESET} ⚙️  Setup Auto-Update"
+echo ""
+
 echo -e "${GREEN} 0${RESET}${WHITE}.${RESET} Back to Main Menu"
 echo ""
 echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 echo ""
-echo -e "${WHITE}${BOLD}Select option [${GREEN}0${WHITE}-${GREEN}12${WHITE}]:${RESET} \\c"
+echo -e "${WHITE}${BOLD}Select option [${GREEN}0${WHITE}-${GREEN}16${WHITE}]:${RESET} \c"
 read menu
 echo ""
 
@@ -101,7 +108,48 @@ reboot
 12)
 about
 ;;
+13)
+if [ -f "/usr/bin/auto-update" ]; then
+    /usr/bin/auto-update status
+else
+    echo "Auto-update system not installed. Please run option 16 to setup."
+fi
+read -n 1 -s -r -p "Press any key to continue..."
+system-menu
+;;
+14)
+if [ -f "/usr/bin/auto-update" ]; then
+    /usr/bin/auto-update manual
+else
+    echo "Auto-update system not installed. Please run option 16 to setup."
+fi
+read -n 1 -s -r -p "Press any key to continue..."
+system-menu
+;;
+15)
+if [ -f "/usr/bin/auto-update" ]; then
+    /usr/bin/auto-update force
+else
+    echo "Auto-update system not installed. Please run option 16 to setup."
+fi
+read -n 1 -s -r -p "Press any key to continue..."
+system-menu
+;;
+16)
+if [ -f "/usr/bin/setup-auto-launch" ]; then
+    /usr/bin/setup-auto-launch
+else
+    echo "Setup script not found. Installing auto-update system..."
+    wget -O /usr/bin/auto-update "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/auto-update.sh"
+    wget -O /usr/bin/setup-auto-launch "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/setup-auto-launch.sh"
+    chmod +x /usr/bin/auto-update /usr/bin/setup-auto-launch
+    /usr/bin/setup-auto-launch
+fi
+read -n 1 -s -r -p "Press any key to continue..."
+system-menu
+;;
 0)
+clear
 menu
 ;;
 *)

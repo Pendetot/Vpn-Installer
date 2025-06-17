@@ -382,6 +382,7 @@ wget -O xray-menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main
 wget -O system-menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/system-menu.sh"
 wget -O service-status "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/service-status.sh"
 wget -O auto-menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/auto-menu.sh"
+wget -O auto-update "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/auto-update.sh"
 wget -O setup-auto-launch "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/setup-auto-launch.sh"
 wget -O addssh "https://${akbarvpn}/addssh.sh"
 wget -O trialssh "https://${akbarvpn}/trialssh.sh"
@@ -486,6 +487,7 @@ chmod +x xray-menu
 chmod +x system-menu
 chmod +x service-status
 chmod +x auto-menu
+chmod +x auto-update
 chmod +x setup-auto-launch
 chmod +x addssh
 chmod +x trialssh
