@@ -3,7 +3,7 @@
 </p>
 
 <p align='center'>
-<img src="https://avatars.githubusercontent.com/u/70790541?v=4" width="120" alt="AthenaProject"/>
+width="120" alt="AthenaProject"/>
 </p>
 
 <h1 align="center">🚀 AthenaProject VPN Installer</h1>
