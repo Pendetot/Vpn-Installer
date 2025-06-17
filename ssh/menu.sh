@@ -2,17 +2,17 @@
 clear
 
 # Color definitions for modern minimalist design
-RESET="[0m"
-BOLD="[1m"
-DIM="[2m"
-CYAN="[96m"
-BLUE="[94m"
-GREEN="[92m"
-YELLOW="[93m"
-RED="[91m"
-PURPLE="[95m"
-WHITE="[97m"
-GRAY="[90m"
+RESET="\033[0m"
+BOLD="\033[1m"
+DIM="\033[2m"
+CYAN="\033[96m"
+BLUE="\033[94m"
+GREEN="\033[92m"
+YELLOW="\033[93m"
+RED="\033[91m"
+PURPLE="\033[95m"
+WHITE="\033[97m"
+GRAY="\033[90m"
 
 # Get system information
 HOSTNAME=$(hostname)
@@ -129,7 +129,7 @@ echo -e "${GREEN}60${RESET}${WHITE}.${RESET} Info Script Auto Install"
 
 echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 echo ""
-echo -e "${WHITE}${BOLD}Select option [${GREEN}1${WHITE}-${GREEN}60${WHITE}]:${RESET} \c"
+echo -e "${WHITE}${BOLD}Select option [${GREEN}1${WHITE}-${GREEN}60${WHITE}]:${RESET} \\c"
 read menu
 echo ""
 
