@@ -25,20 +25,23 @@ mkdir -p /etc/vpn-installer
 mkdir -p /opt/vpn-installer
 mkdir -p /var/log
 
+# Get script directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Copy auto-update script
 echo -e "${YELLOW}Installing auto-update script...${NC}"
-cp auto-update.sh /usr/local/bin/auto-update.sh
+cp "${SCRIPT_DIR}/auto-update.sh" /usr/local/bin/auto-update.sh
 chmod +x /usr/local/bin/auto-update.sh
 
 # Copy login script
 echo -e "${YELLOW}Installing login script...${NC}"
-cp vpn-auto-update-login.sh /etc/profile.d/vpn-auto-update.sh
+cp "${SCRIPT_DIR}/vpn-auto-update-login.sh" /etc/profile.d/vpn-auto-update.sh
 chmod +x /etc/profile.d/vpn-auto-update.sh
 
 # Copy configuration file
 echo -e "${YELLOW}Installing configuration...${NC}"
 if [ ! -f /etc/vpn-installer/config ]; then
-    cp vpn-installer-config /etc/vpn-installer/config
+    cp "${SCRIPT_DIR}/vpn-installer-config" /etc/vpn-installer/config
 else
     echo -e "${YELLOW}Configuration file already exists, skipping...${NC}"
 fi

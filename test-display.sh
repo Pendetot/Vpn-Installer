@@ -1,5 +1,8 @@
 #!/bin/bash
-clear
+cd /home/user/workspace
+
+# Source the service status functions
+source ssh/service-status.sh
 
 # Color definitions
 RESET="[0m"
@@ -11,14 +14,13 @@ YELLOW="[93m"
 RED="[91m"
 WHITE="[97m"
 
-# Source service status functions
-source /usr/bin/service-status.sh 2>/dev/null || source /home/user/workspace/ssh/service-status.sh 2>/dev/null
-
 # Get system information
 HOSTNAME=$(hostname)
 IP=$(curl -s ifconfig.me 2>/dev/null || echo "N/A")
 UPTIME=$(uptime -p 2>/dev/null || echo "N/A")
 DATE=$(date "+%Y-%m-%d %H:%M:%S")
+
+clear
 
 # Simple header
 echo -e "${CYAN}${BOLD}"
@@ -39,9 +41,7 @@ echo "=================================================================="
 echo ""
 
 # Show running services
-if type show_running_services >/dev/null 2>&1; then
-    show_running_services
-fi
+show_running_services
 
 # Main menu categories
 echo -e "${WHITE}${BOLD}Main Menu Categories${RESET}"
@@ -77,46 +77,4 @@ echo -e "${GREEN} 0${RESET}. Exit"
 echo ""
 echo "=================================================================="
 echo ""
-echo -e "${WHITE}${BOLD}Select option [${GREEN}0${WHITE}-${GREEN}9${WHITE}]:${RESET} \c"
-read menu
-echo ""
-
-case $menu in
-1)
-ssh-menu
-;;
-2)
-vpn-menu
-;;
-3)
-advanced-menu
-;;
-4)
-xray-menu
-;;
-5)
-system-menu
-;;
-6)
-restart
-;;
-7)
-info
-;;
-8)
-about
-;;
-9)
-auto-update-menu
-;;
-0)
-clear
-echo -e "${CYAN}Thank you for using Athena Project Mas Ventod!${RESET}"
-echo -e "${YELLOW}Telegram: @masventot${RESET}"
-exit 0
-;;
-*)
-clear
-menu
-;;
-esac
+echo -e "${WHITE}${BOLD}Select option [${GREEN}0${WHITE}-${GREEN}9${WHITE}]:${RESET}"
