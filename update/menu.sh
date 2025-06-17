@@ -2,17 +2,14 @@
 clear
 
 # Color definitions
-RESET="\033[0m"
-BOLD="\033[1m"
-DIM="\033[2m"
-CYAN="\033[96m"
-BLUE="\033[94m"
-GREEN="\033[92m"
-YELLOW="\033[93m"
-RED="\033[91m"
-PURPLE="\033[95m"
-WHITE="\033[97m"
-GRAY="\033[90m"
+RESET="[0m"
+BOLD="[1m"
+CYAN="[96m"
+BLUE="[94m"
+GREEN="[92m"
+YELLOW="[93m"
+RED="[91m"
+WHITE="[97m"
 
 # Source service status functions
 source /usr/bin/service-status.sh 2>/dev/null || source /home/user/workspace/ssh/service-status.sh 2>/dev/null
@@ -23,23 +20,22 @@ IP=$(curl -s ifconfig.me 2>/dev/null || echo "N/A")
 UPTIME=$(uptime -p 2>/dev/null || echo "N/A")
 DATE=$(date "+%Y-%m-%d %H:%M:%S")
 
-# Header with AthenaProject Tunneling branding
+# Simple header
 echo -e "${CYAN}${BOLD}"
-echo "  ╔═══════════════════════════════════════════════════════════════╗"
-echo "  ║                                                               ║"
-echo "  ║              ▄▀█ ▀█▀ █░█ █▀▀ █▄░█ ▄▀█   █▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀  ║"
-echo "  ║              █▀█ ░█░ █▀█ ██▄ █░▀█ █▀█   █▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░  ║"
-echo "  ║                                                               ║"
-echo "  ║                     Mas Ventod Edition                       ║"
-echo "  ║                                                               ║"
-echo "  ╚═══════════════════════════════════════════════════════════════╝"
+echo "=================================================================="
+echo "                    ATHENA PROJECT TUNNELING"
+echo "                      Mas Ventod Edition"
+echo "=================================================================="
 echo -e "${RESET}"
 
-# System info bar
-echo -e "${GRAY}${DIM}┌─────────────────────────────────────────────────────────────────┐${RESET}"
-echo -e "${GRAY}${DIM}│${RESET} ${WHITE}Host:${RESET} ${HOSTNAME} ${GRAY}│${RESET} ${WHITE}IP:${RESET} ${IP} ${GRAY}│${RESET} ${WHITE}Date:${RESET} ${DATE} ${GRAY}${DIM}│${RESET}"
-echo -e "${GRAY}${DIM}│${RESET} ${WHITE}Uptime:${RESET} ${UPTIME}${GRAY}${DIM}                                    │${RESET}"
-echo -e "${GRAY}${DIM}└─────────────────────────────────────────────────────────────────┘${RESET}"
+# System information
+echo -e "${WHITE}System Information:${RESET}"
+echo "=================================================================="
+echo "Host: ${HOSTNAME}"
+echo "IP Address: ${IP}"
+echo "Date: ${DATE}"
+echo "Uptime: ${UPTIME}"
+echo "=================================================================="
 echo ""
 
 # Show running services
@@ -48,13 +44,13 @@ if type show_running_services >/dev/null 2>&1; then
 fi
 
 # Main menu categories
-echo -e "${WHITE}${BOLD}📋 Main Menu Categories${RESET}"
-echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-echo -e "${GREEN} 1${RESET}${WHITE}.${RESET} 🔐 SSH & OpenVPN Services"
-echo -e "${GREEN} 2${RESET}${WHITE}.${RESET} 🌐 VPN Protocols (L2TP, PPTP, SSTP, WireGuard)"
-echo -e "${GREEN} 3${RESET}${WHITE}.${RESET} 🔒 Advanced Tunneling (Shadowsocks, SSR, Trojan GO)"
-echo -e "${GREEN} 4${RESET}${WHITE}.${RESET} ⚡ XRAY Protocols (VMESS, VLESS, Trojan)"
-echo -e "${GREEN} 5${RESET}${WHITE}.${RESET} ⚙️  System Management & Tools"
+echo -e "${WHITE}${BOLD}Main Menu Categories${RESET}"
+echo "=================================================================="
+echo -e "${GREEN} 1${RESET}. SSH & OpenVPN Services"
+echo -e "${GREEN} 2${RESET}. VPN Protocols (L2TP, PPTP, SSTP, WireGuard)"
+echo -e "${GREEN} 3${RESET}. Advanced Tunneling (Shadowsocks, SSR, Trojan GO)"
+echo -e "${GREEN} 4${RESET}. XRAY Protocols (VMESS, VLESS, Trojan)"
+echo -e "${GREEN} 5${RESET}. System Management & Tools"
 echo ""
 
 # Auto-Update Status
@@ -70,17 +66,16 @@ else
 fi
 
 # Quick Actions
-echo -e "${WHITE}${BOLD}⚡ Quick Actions${RESET}"
-echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-echo -e "${GREEN} 6${RESET}${WHITE}.${RESET} 🔄 Restart All Services"
-echo -e "${GREEN} 7${RESET}${WHITE}.${RESET} 📊 System Information"
-echo -e "${GREEN} 8${RESET}${WHITE}.${RESET} ℹ️  About Script"
-echo -e "${GREEN} 9${RESET}${WHITE}.${RESET} 🔄 Auto-Update ${UPDATE_STATUS}"
+echo -e "${WHITE}${BOLD}Quick Actions${RESET}"
+echo "=================================================================="
+echo -e "${GREEN} 6${RESET}. Restart All Services"
+echo -e "${GREEN} 7${RESET}. System Information"
+echo -e "${GREEN} 8${RESET}. About Script"
+echo -e "${GREEN} 9${RESET}. Auto-Update ${UPDATE_STATUS}"
 echo ""
-
-echo -e "${GREEN} 0${RESET}${WHITE}.${RESET} 🚪 Exit"
+echo -e "${GREEN} 0${RESET}. Exit"
 echo ""
-echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo "=================================================================="
 echo ""
 echo -e "${WHITE}${BOLD}Select option [${GREEN}0${WHITE}-${GREEN}9${WHITE}]:${RESET} \c"
 read menu
