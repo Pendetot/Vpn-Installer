@@ -22,6 +22,7 @@ rm -rf setmenu
 rm -rf slowdnsmenu
 rm -rf running
 rm -rf copyrepo
+rm -rf auto-update-menu
 
 # download menu
 cd /usr/bin
@@ -31,10 +32,11 @@ rm -rf restart
 rm -rf slhost
 rm -rf install-sldns
 rm -rf addssh
-wget -O install-sldns "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/SLDNS/install-sldns"
-wget -O restart "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/ssh/restart.sh"
-wget -O addssh "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/ssh/addssh.sh"
-wget -O menu "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/update/menu.sh"
+wget -O install-sldns "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/SLDNS/install-sldns"
+wget -O restart "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/restart.sh"
+wget -O addssh "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh/addssh.sh"
+wget -O menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/update/menu.sh"
+wget -O auto-update-menu "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/update/auto-update-menu.sh"
 wget -O ipsaya "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/update/ipsaya.sh"
 wget -O sl-fix "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/sslh-fix/sl-fix"
 wget -O sshovpnmenu "https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/update/sshovpn.sh"
@@ -74,6 +76,7 @@ chmod +x menuinfo
 chmod +x slhost
 chmod +x copyrepo
 chmod +x menu
+chmod +x auto-update-menu
 chmod +x ipsaya
 chmod +x sl-fix
 chmod +x sshovpnmenu

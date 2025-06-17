@@ -57,19 +57,32 @@ echo -e "${GREEN} 4${RESET}${WHITE}.${RESET} ⚡ XRAY Protocols (VMESS, VLESS, T
 echo -e "${GREEN} 5${RESET}${WHITE}.${RESET} ⚙️  System Management & Tools"
 echo ""
 
+# Auto-Update Status
+if [ -f "/usr/local/bin/auto-update.sh" ]; then
+    AUTO_UPDATE_STATUS=$(/usr/local/bin/auto-update.sh status 2>/dev/null | grep -o "ENABLED\|DISABLED" || echo "UNKNOWN")
+    if [ "$AUTO_UPDATE_STATUS" = "ENABLED" ]; then
+        UPDATE_STATUS="${GREEN}[ON]${RESET}"
+    else
+        UPDATE_STATUS="${RED}[OFF]${RESET}"
+    fi
+else
+    UPDATE_STATUS="${YELLOW}[NOT INSTALLED]${RESET}"
+fi
+
 # Quick Actions
 echo -e "${WHITE}${BOLD}⚡ Quick Actions${RESET}"
 echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 echo -e "${GREEN} 6${RESET}${WHITE}.${RESET} 🔄 Restart All Services"
 echo -e "${GREEN} 7${RESET}${WHITE}.${RESET} 📊 System Information"
 echo -e "${GREEN} 8${RESET}${WHITE}.${RESET} ℹ️  About Script"
+echo -e "${GREEN} 9${RESET}${WHITE}.${RESET} 🔄 Auto-Update ${UPDATE_STATUS}"
 echo ""
 
 echo -e "${GREEN} 0${RESET}${WHITE}.${RESET} 🚪 Exit"
 echo ""
 echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 echo ""
-echo -e "${WHITE}${BOLD}Select option [${GREEN}0${WHITE}-${GREEN}8${WHITE}]:${RESET} \\c"
+echo -e "${WHITE}${BOLD}Select option [${GREEN}0${WHITE}-${GREEN}9${WHITE}]:${RESET} \c"
 read menu
 echo ""
 
@@ -97,6 +110,9 @@ info
 ;;
 8)
 about
+;;
+9)
+auto-update-menu
 ;;
 0)
 clear
