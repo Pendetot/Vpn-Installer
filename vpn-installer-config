@@ -1,0 +1,23 @@
+# VPN Installer Auto-Update Configuration
+# This file controls the auto-update behavior
+
+# Enable or disable auto-update (true/false)
+AUTO_UPDATE_ENABLED=true
+
+# Update check interval in seconds (default: 3600 = 1 hour)
+UPDATE_CHECK_INTERVAL=3600
+
+# Enable backup before update (true/false)
+BACKUP_ENABLED=true
+
+# Maximum number of backups to keep
+MAX_BACKUPS=3
+
+# Show update notifications (true/false)
+SHOW_NOTIFICATIONS=true
+
+# Auto-restart services after update (true/false)
+AUTO_RESTART_SERVICES=false
+
+# Log level (INFO, WARNING, ERROR)
+LOG_LEVEL=INFO

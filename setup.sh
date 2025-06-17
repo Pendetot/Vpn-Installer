@@ -168,6 +168,20 @@ echo "   - Auto Delete Expired Account" | tee -a log-install.txt
 echo "   - Full Orders For Various Services" | tee -a log-install.txt
 echo "   - White Label" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
+echo ""  | tee -a log-install.txt
+echo "   >>> Auto-Update System"  | tee -a log-install.txt
+echo "   - Auto-Update             : [ON]"  | tee -a log-install.txt
+echo "   - Update Check            : On Login & Hourly"  | tee -a log-install.txt
+echo "   - Update Command          : vpn-update"  | tee -a log-install.txt
+echo ""  | tee -a log-install.txt
+
+# Install Auto-Update System
+echo "Installing Auto-Update System..."
+wget -O install-auto-update.sh "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/install-auto-update.sh"
+chmod +x install-auto-update.sh
+./install-auto-update.sh
+rm -f install-auto-update.sh
+
 echo " Reboot 15 Sec"
 sleep 15
 rm -f setup.sh
