@@ -2,10 +2,6 @@
 <img src="https://readme-typing-svg.herokuapp.com?color=%2336BCF7&center=true&vCenter=true&lines=A+T+H+E+N+A+P+R+O+J+E+C+T" />
 </p>
 
-<p align='center'>
-width="120" alt="AthenaProject"/>
-</p>
-
 <h1 align="center">🚀 AthenaProject VPN Installer</h1>
 <h3 align="center">Premium Auto Script Install All VPN Services</h3>
 <h4 align="center">Recode By AthenaProject | Powered by MasVentot</h4>
