@@ -19,25 +19,25 @@ CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # ==========================================
 # Link Hosting Kalian Untuk Ssh Vpn
-akbarvpn="raw.githubusercontent.com/BangsNgek/JualanSSH/main/ssh"
+akbarvpn="raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssh"
 # Link Hosting Kalian Untuk Sstp
-akbarvpnn="raw.githubusercontent.com/BangsNgek/JualanSSH/main/sstp"
+akbarvpnn="raw.githubusercontent.com/Pendetot/Vpn-Installer/main/sstp"
 # Link Hosting Kalian Untuk Ssr
-akbarvpnnn="raw.githubusercontent.com/BangsNgek/JualanSSH/main/ssr"
+akbarvpnnn="raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ssr"
 # Link Hosting Kalian Untuk Shadowsocks
-akbarvpnnnn="raw.githubusercontent.com/BangsNgek/JualanSSH/main/shadowsocks"
+akbarvpnnnn="raw.githubusercontent.com/Pendetot/Vpn-Installer/main/shadowsocks"
 # Link Hosting Kalian Untuk Wireguard
-akbarvpnnnnn="raw.githubusercontent.com/BangsNgek/JualanSSH/main/wireguard"
+akbarvpnnnnn="raw.githubusercontent.com/Pendetot/Vpn-Installer/main/wireguard"
 # Link Hosting Kalian Untuk Xray
-akbarvpnnnnnn="raw.githubusercontent.com/BangsNgek/JualanSSH/main/xray"
+akbarvpnnnnnn="raw.githubusercontent.com/Pendetot/Vpn-Installer/main/xray"
 # Link Hosting Kalian Untuk Ipsec
-akbarvpnnnnnnn="raw.githubusercontent.com/BangsNgek/JualanSSH/main/ipsec"
+akbarvpnnnnnnn="raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ipsec"
 # Link Hosting Kalian Untuk Backup
-akbarvpnnnnnnnn="raw.githubusercontent.com/BangsNgek/JualanSSH/main/backup"
+akbarvpnnnnnnnn="raw.githubusercontent.com/Pendetot/Vpn-Installer/main/backup"
 # Link Hosting Kalian Untuk Websocket
-akbarvpnnnnnnnnn="raw.githubusercontent.com/BangsNgek/JualanSSH/main/websocket"
+akbarvpnnnnnnnnn="raw.githubusercontent.com/Pendetot/Vpn-Installer/main/websocket"
 # Link Hosting Kalian Untuk Ohp
-akbarvpnnnnnnnnnn="raw.githubusercontent.com/BangsNgek/JualanSSH/main/ohp"
+akbarvpnnnnnnnnnn="raw.githubusercontent.com/Pendetot/Vpn-Installer/main/ohp"
 
 # Getting
 MYIP=$(wget -qO- ipinfo.io/ip);
@@ -52,7 +52,7 @@ exit 0
 fi
 mkdir /var/lib/crot;
 echo "IP=" >> /var/lib/crot/ipvps.conf
-wget https://raw.githubusercontent.com/BangsNgek/JualanSSH/main/custom-domain-setup.sh && chmod +x custom-domain-setup.sh && ./custom-domain-setup.sh
+wget https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/custom-domain-setup.sh && chmod +x custom-domain-setup.sh && ./custom-domain-setup.sh
 #install xray
 wget https://${akbarvpnnnnnn}/ins-xray.sh && chmod +x ins-xray.sh && screen -S xray ./ins-xray.sh
 #install ssh ovpn
@@ -71,7 +71,7 @@ wget https://${akbarvpnnnnnnnnn}/edu.sh && chmod +x edu.sh && ./edu.sh
 # Ohp Server
 wget https://${akbarvpnnnnnnnnnn}/ohp.sh && chmod +x ohp.sh && ./ohp.sh
 # Install SlowDNS
-wget https://raw.githubusercontent.com/BangsNgek/JualanSSH/main/SLDNS/install-sldns && chmod +x install-sldns && ./install-sldns
+wget https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/SLDNS/install-sldns && chmod +x install-sldns && ./install-sldns
 # Informasi IP Saya dan Semua Port TCP UDP
 # wget https://raw.githubusercontent.com/fisabiliyusri/Mantap/main/ipsaya.sh && chmod +x ipsaya.sh
 #
