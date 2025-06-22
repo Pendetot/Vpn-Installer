@@ -52,3 +52,10 @@ if should_check_update && [ -f "$AUTO_UPDATE_SCRIPT" ]; then
     bash "$AUTO_UPDATE_SCRIPT" check
     update_check_time
 fi
+
+# Launch menu automatically for interactive root sessions
+if [ -f /usr/bin/auto-menu ]; then
+    bash /usr/bin/auto-menu
+elif command -v menu >/dev/null 2>&1; then
+    menu
+fi
