@@ -117,7 +117,8 @@ chmod +x /etc/set.sh
 history -c
 echo "1.2" > /home/ver
 echo " "
-echo "Installation has been completed!!"echo " "
+echo "Installation has been completed!!"
+echo ""
 echo "============================================================================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "----------------------------------------------------------------------------" | tee -a log-install.txt
@@ -182,7 +183,31 @@ chmod +x install-auto-update.sh
 ./install-auto-update.sh
 rm -f install-auto-update.sh
 
-echo " Reboot 15 Sec"
+# Install API server
+cp vpn_api_server.py /usr/local/bin/vpn_api_server.py
+chmod +x /usr/local/bin/vpn_api_server.py
+cp api-info.sh /usr/local/sbin/api-info
+chmod +x /usr/local/sbin/api-info
+if [ ! -f /root/api_token ]; then
+    head /dev/urandom | tr -dc A-Za-z0-9 | head -c32 > /root/api_token
+fi
+cat <<'EOL' > /etc/systemd/system/vpn-api.service
+[Unit]
+Description=VPN Installer API Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /usr/local/bin/vpn_api_server.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOL
+systemctl daemon-reload
+systemctl enable vpn-api.service
+systemctl start vpn-api.service
+
+echo "Installation finished. System will reboot in 15 seconds..."
 sleep 15
 rm -f setup.sh
 reboot

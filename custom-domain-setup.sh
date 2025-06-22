@@ -19,16 +19,13 @@ BOLD='\033[1m'
 # Animation and UI functions
 print_banner() {
     clear
-    echo -e "${CYAN}╔══════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${CYAN}║${WHITE}                        ATHENA PROJECT                        ${CYAN}║${NC}"
-    echo -e "${CYAN}║${YELLOW}                   Custom Domain Setup                       ${CYAN}║${NC}"
-    echo -e "${CYAN}║${GREEN}                  Enhanced by Athena Team                    ${CYAN}║${NC}"
-    echo -e "${CYAN}╚══════════════════════════════════════════════════════════════╝${NC}"
+    echo -e "${CYAN}${BOLD}ATHENA PROJECT - Domain Setup${NC}"
+    echo -e "${CYAN}----------------------------------------${NC}"
     echo ""
 }
 
 print_separator() {
-    echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${CYAN}----------------------------------------${NC}"
 }
 
 print_success() {
@@ -127,8 +124,39 @@ get_user_domain() {
     echo "$domain"
 }
 
+get_user_ns() {
+    local ns=""
+    local valid=false
+
+    while [ "$valid" = false ]; do
+        print_separator
+        echo -e "${WHITE}${BOLD}Nameserver Configuration${NC}"
+        echo -e "${CYAN}Please enter your NS domain:${NC}"
+        echo -e "${YELLOW}Example: ns.yourdomain.com${NC}"
+        echo ""
+        read -p "$(echo -e ${GREEN}NS Domain: ${NC})" ns
+
+        if [ -z "$ns" ]; then
+            print_error "NS domain cannot be empty!"
+            echo ""
+            continue
+        fi
+
+        if validate_domain "$ns"; then
+            print_success "NS domain format is valid!"
+            valid=true
+        else
+            print_error "Invalid domain format!"
+            echo ""
+        fi
+    done
+
+    echo "$ns"
+}
+
 setup_domain_config() {
     local domain="$1"
+    local ns="$2"
     local ip=$(wget -qO- icanhazip.com)
     
     print_separator
@@ -159,15 +187,18 @@ setup_domain_config() {
     echo "$domain" > /root/domain
     echo "$domain" > /etc/xray/domain
     echo "$domain" > /etc/v2ray/domain
+    echo "$ns" > /root/nsdomain
     echo "IP=$domain" > /var/lib/crot/ipvps.conf
     
     print_success "Domain configuration saved!"
     print_info "Domain: ${GREEN}$domain${NC}"
+    print_info "NS: ${GREEN}$ns${NC}"
     print_info "Configuration files updated successfully"
 }
 
 show_dns_instructions() {
     local domain="$1"
+    local ns="$2"
     local ip=$(wget -qO- icanhazip.com)
     
     print_separator
@@ -178,11 +209,10 @@ show_dns_instructions() {
     echo -e "${CYAN}Record Type: ${WHITE}A${NC}"
     echo -e "${CYAN}Name/Host: ${WHITE}$domain${NC}"
     echo -e "${CYAN}Value/IP: ${WHITE}$ip${NC}"
-    echo -e "${CYAN}TTL: ${WHITE}300 (or default)${NC}"
+    echo -e "${CYAN}TTL: ${WHITE}300${NC}"
     echo ""
-    echo -e "${YELLOW}If using a subdomain, also add:${NC}"
-    echo -e "${CYAN}Record Type: ${WHITE}CNAME${NC}"
-    echo -e "${CYAN}Name/Host: ${WHITE}*.$domain${NC}"
+    echo -e "${CYAN}Record Type: ${WHITE}NS${NC}"
+    echo -e "${CYAN}Name/Host: ${WHITE}$ns${NC}"
     echo -e "${CYAN}Value: ${WHITE}$domain${NC}"
     echo ""
     print_warning "Make sure DNS records are properly configured before proceeding!"
@@ -199,17 +229,21 @@ main() {
     
     # Get custom domain from user
     CUSTOM_DOMAIN=$(get_user_domain)
-    
+
+    # Get NS domain from user
+    CUSTOM_NS=$(get_user_ns)
+
     # Setup domain configuration
-    setup_domain_config "$CUSTOM_DOMAIN"
-    
+    setup_domain_config "$CUSTOM_DOMAIN" "$CUSTOM_NS"
+
     # Show DNS instructions
-    show_dns_instructions "$CUSTOM_DOMAIN"
+    show_dns_instructions "$CUSTOM_DOMAIN" "$CUSTOM_NS"
     
     print_separator
     echo -e "${GREEN}${BOLD}Domain Setup Complete!${NC}"
     echo ""
-    echo -e "${WHITE}Your custom domain: ${GREEN}$CUSTOM_DOMAIN${NC}"
+    echo -e "${WHITE}Domain : ${GREEN}$CUSTOM_DOMAIN${NC}"
+    echo -e "${WHITE}NS     : ${GREEN}$CUSTOM_NS${NC}"
     echo -e "${WHITE}Next steps:${NC}"
     echo -e "${CYAN}1.${NC} Configure DNS records as shown above"
     echo -e "${CYAN}2.${NC} Wait for DNS propagation (5-30 minutes)"

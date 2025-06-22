@@ -17,6 +17,34 @@ YELLOW='[1;33m'
 BLUE='[0;34m'
 NC='[0m' # No Color
 
+# Spinner variables
+SPINNER_PID=""
+SPINNER_MSG=""
+
+start_spinner() {
+    SPINNER_MSG="$1"
+    local delay=0.1
+    local spin='|/-\\'
+    (
+        while true; do
+            for i in {0..3}; do
+                printf "\r${spin:i:1} %s" "$SPINNER_MSG"
+                sleep $delay
+            done
+        done
+    ) &
+    SPINNER_PID=$!
+}
+
+stop_spinner() {
+    if [ -n "$SPINNER_PID" ] && kill -0 "$SPINNER_PID" 2>/dev/null; then
+        kill "$SPINNER_PID" 2>/dev/null
+        wait "$SPINNER_PID" 2>/dev/null
+        printf "\r✓ %s\n" "$SPINNER_MSG"
+    fi
+    SPINNER_PID=""
+    SPINNER_MSG=""
+}
 # Logging function
 log_message() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
@@ -96,16 +124,19 @@ restore_backup() {
 # Update the installation
 perform_update() {
     log_message "Starting update process..."
+    start_spinner "Updating VPN Installer..."
     
     # Create backup first
     if ! create_backup; then
         log_message "Update aborted due to backup failure"
+        stop_spinner
         return 1
     fi
     
     # Navigate to install directory
     cd "$INSTALL_DIR" || {
         log_message "Failed to navigate to install directory"
+        stop_spinner
         return 1
     }
     
@@ -113,6 +144,7 @@ perform_update() {
     log_message "Fetching latest changes from repository..."
     if ! git fetch origin main; then
         log_message "Failed to fetch updates"
+        stop_spinner
         return 1
     fi
     
@@ -121,6 +153,7 @@ perform_update() {
     if ! git reset --hard origin/main; then
         log_message "Failed to apply updates, restoring backup..."
         restore_backup
+        stop_spinner
         return 1
     fi
     
@@ -133,6 +166,7 @@ perform_update() {
         bash "$INSTALL_DIR/update/updatemenu.sh" &>/dev/null
     fi
     
+    stop_spinner
     log_message "Update completed successfully"
     return 0
 }
