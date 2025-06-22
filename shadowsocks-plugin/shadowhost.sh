@@ -25,7 +25,7 @@ SUB_DOMAIN=onichan-${sub}.mantapxsl.my.id
 NS_DOMAIN=slowdns-${subsl}.mantapxsl.my.id
 CF_ID=slinfinity69@gmail.com
 CF_KEY=3dcb550a77cb0a64dacf205243e3ac550f9db
-echo "IP=""$SUB_DOMAIN" >> /var/lib/crot/ipvps.conf
+printf 'IP=%s\n' "$SUB_DOMAIN" > /var/lib/crot/ipvps.conf
 set -euo pipefail
 IP=$(wget -qO- icanhazip.com);
 echo "Updating DNS for ${SUB_DOMAIN}..."

@@ -116,7 +116,8 @@ update_domain_config() {
     echo ""
     
     # Update configuration files
-    echo "IP=$new_domain" >> /var/lib/crot/ipvps.conf
+    # overwrite stored domain with the new value
+    printf 'IP=%s\n' "$new_domain" > /var/lib/crot/ipvps.conf
     rm -rf /etc/xray/domain
     echo "$new_domain" > /etc/xray/domain
     echo "$new_domain" > /root/domain

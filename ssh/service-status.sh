@@ -81,12 +81,17 @@ show_running_services() {
     check_service_status "ws-nontls" "Websocket HTTP" "8880"
     check_service_status "ws-ovpn" "Websocket OpenVPN" "2086"
     echo ""
-    
+
     # OHP Services
     echo -e "${WHITE}OHP Services:${RESET}"
     check_service_status "ohp-ssh" "OHP SSH" "8181"
     check_service_status "ohp-dropbear" "OHP Dropbear" "8282"
     check_service_status "ohp-openvpn" "OHP OpenVPN" "8383"
+    echo ""
+
+    # Proxy & Load Balancer
+    echo -e "${WHITE}Proxy & Load Balancer:${RESET}"
+    check_service_status "haproxy" "HAProxy" "80, 443"
     echo ""
     
     echo "=================================================================="

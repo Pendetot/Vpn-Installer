@@ -77,7 +77,7 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_r
      --data '{"type":"NS","name":"'${NS_DOMAIN}'","content":"'${SUB_DOMAIN}'","ttl":120,"proxied":false}')
 rm -rf /etc/xray/domain
 rm -rf /root/nsdomain
-echo "IP=""$SUB_DOMAIN" >> /var/lib/crot/ipvps.conf
+printf 'IP=%s\n' "$SUB_DOMAIN" > /var/lib/crot/ipvps.conf
 echo "Host : $SUB_DOMAIN"
 echo $SUB_DOMAIN > /root/domain
 echo "Host SlowDNS : $NS_DOMAIN"

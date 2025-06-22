@@ -1,75 +1,66 @@
 # AthenaProject VPN Installer
 
-<p align="center">
-<img src="https://readme-typing-svg.herokuapp.com?color=%2336BCF7&center=true&vCenter=true&lines=A+T+H+E+N+A+P+R+O+J+E+C+T" />
-</p>
+**Script simpel buat install semua layanan VPN di server kamu.**
 
-<h2 align="center">Auto Script Install All VPN Services</h2>
+![Version](https://img.shields.io/badge/Version-2.0.0-blue.svg) ![License](https://img.shields.io/badge/License-MIT-green.svg) ![OS](https://img.shields.io/badge/OS-Ubuntu%20%7C%20Debian-orange.svg)
 
-<p align="center">
-<img src="https://img.shields.io/badge/Version-2.0.0-blue.svg">
-<img src="https://img.shields.io/badge/License-MIT-green.svg">
-<img src="https://img.shields.io/badge/OS-Ubuntu%20|%20Debian-orange.svg">
-</p>
-
-## 🚀 Quick Installation
+## 🚀 Cara Cepat Install
 
 ```bash
-wget -O setup.sh https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/setup.sh && chmod +x setup.sh && ./setup.sh
+wget -O setup.sh https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/setup.sh
+chmod +x setup.sh
+./setup.sh
 ```
 
-## 📋 Requirements
+## 🎯 Kebutuhan
 
-- **OS**: Ubuntu 18.04/20.04/22.04 or Debian 9/10/11
-- **RAM**: Minimum 1GB
-- **Root Access**: Required
-- **Fresh VPS**: Recommended
+- **OS**: Ubuntu 18.04/20.04/22.04 atau Debian 9/10/11
+- **RAM**: Minimal 1GB
+- **Akses root**
+- **VPS fresh** biar gak bentrok sama konfigurasi lain
 
-## 🛠️ Supported Services
+## 🔥 Layanan yang Didukung
 
-### VPN Protocols
-- **SSH & OpenVPN** - Secure Shell and OpenVPN tunneling
-- **WireGuard** - Modern, fast VPN protocol
-- **L2TP/IPSec** - Layer 2 Tunneling Protocol
-- **PPTP** - Point-to-Point Tunneling Protocol
-- **SSTP** - Secure Socket Tunneling Protocol
+### Protokol VPN
+- **SSH & OpenVPN**
+- **WireGuard**
+- **L2TP/IPSec**
+- **PPTP**
+- **SSTP**
 
-### Advanced Tunneling
-- **XRAY** - VMESS, VLESS, Trojan protocols
-- **Shadowsocks** - With various plugins (obfs, v2ray, xray)
-- **ShadowsocksR** - Enhanced Shadowsocks
-- **Trojan-Go** - Advanced Trojan implementation
+### Tunneling Lanjutan
+- **XRAY** (VMESS, VLESS, Trojan)
+- **Shadowsocks & ShadowsocksR**
+- **Trojan-Go**
 
-### Additional Features
-- **WebSocket** - SSH/OpenVPN over WebSocket
-- **SlowDNS** - SSH over DNS tunneling
-- **gRPC** - High-performance RPC framework support
-- **Auto Backup/Restore** - Data management
-- **Multi-port Support** - Various port configurations
+### Fitur Tambahan
+- WebSocket untuk SSH/OpenVPN
+- SlowDNS
+- gRPC support
+- Backup & restore otomatis
+- Pilihan banyak port
 
-## 🔧 Installation Steps
+## 🔧 Langkah Install
 
-1. **Update System**
+1. **Update sistem**
    ```bash
    apt update && apt upgrade -y && reboot
    ```
-
-2. **Run Installation**
+2. **Jalankan installer**
    ```bash
    wget -O setup.sh https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/setup.sh
    chmod +x setup.sh
    ./setup.sh
    ```
-
-3. **Access Menu**
+3. **Buka menu**
    ```bash
    menu
    ```
 
-## 📊 Default Ports
+## ⚙️ Port Default
 
-| Service | Ports |
-|---------|-------|
+| Layanan | Port |
+|---------|------|
 | SSH | 22, 2253 |
 | Dropbear | 443, 109, 143 |
 | OpenVPN | TCP 1194, UDP 2200, SSL 990 |
@@ -83,62 +74,53 @@ wget -O setup.sh https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/s
 | PPTP | 1732 |
 | SSTP | 444 |
 
-## 🎯 Features
+## ✨ Fitur Keren
 
-- ✅ **Modern UI** - Clean, minimalist menu interface
-- ✅ **Auto Management** - Account creation, deletion, renewal
-- ✅ **Multi-Protocol** - Support for all major VPN protocols
-- ✅ **WebSocket Support** - Bypass network restrictions
-- ✅ **Auto Backup** - Scheduled data backup and restore
-- ✅ **Monitoring** - Real-time connection monitoring
-- ✅ **Auto Updates** - Keep services up to date
-- ✅ **Security** - Fail2ban, iptables, auto-reboot
+- Tampilan menu simpel
+- Buat/hapus/perpanjang akun gampang
+- Support banyak protokol
+- WebSocket ready
+- Backup otomatis
+- Monitoring koneksi real time
+- Auto update langsung aktif tiap login
+- Fitur keamanan: Fail2ban, iptables, auto reboot
+- API bawaan di port 3000 (token ada di `/root/api_token`)
 
-## 🔒 Security Features
+## 🔒 Keamanan
 
-- **Fail2Ban** - Intrusion prevention
-- **IPTables** - Firewall configuration
-- **Auto-Reboot** - System maintenance
-- **Account Expiry** - Automatic cleanup
-- **SSL/TLS** - Encrypted connections
+- Fail2Ban buat cegah brute force
+- IPTables sebagai firewall
+- Sistem auto reboot
+- Akun kadaluarsa dihapus otomatis
+- SSL/TLS untuk koneksi aman
 
-## 📱 Management
+## 📱 Cara Pakai
 
-Access the management menu anytime by typing:
-```bash
-menu
-```
+Setelah install, cukup ketik `menu` buat ngelihat semua opsi. Ada juga command `api-info` buat nunjukin detail API (domain, port, dan token).
 
-## 🆘 Troubleshooting
+## ❓ Troubleshooting
 
-### Common Issues
-
-1. **SSLH Not Working**
+Beberapa masalah umum:
+1. **SSLH error**
    ```bash
    systemctl stop ws-tls
    echo "sslh:x:109:114::/nonexistent:/usr/sbin/nologin" >> /etc/passwd
    systemctl start sslh
    systemctl start ws-tls
    ```
-
-2. **Service Status Check**
+2. **Cek status service**
    ```bash
-   systemctl status [service-name]
+   systemctl status <nama-service>
    ```
 
-## 📞 Support
+## 🤝 Dukungan
 
-- **GitHub**: [Issues](https://github.com/Pendetot/Vpn-Installer/issues)
-- **Documentation**: [Wiki](https://github.com/Pendetot/Vpn-Installer/wiki)
+Kalau ada masalah atau mau request fitur, buka saja issue di GitHub.
 
-## 📄 License
+## 📄 Lisensi
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## ⭐ Star History
-
-If this project helped you, please give it a ⭐!
+Proyek ini pakai lisensi MIT.
 
 ---
 
-<p align="center">Made with ❤️ for the VPN community</p>
+<p align="center">Dibuat dengan ❤️ buat komunitas VPN</p>

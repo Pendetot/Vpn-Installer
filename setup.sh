@@ -50,8 +50,9 @@ if [ -f "/etc/xray/domain" ]; then
 echo "Script Already Installed"
 exit 0
 fi
-mkdir /var/lib/crot;
-echo "IP=" >> /var/lib/crot/ipvps.conf
+mkdir -p /var/lib/crot
+# create empty domain placeholder
+echo "IP=" > /var/lib/crot/ipvps.conf
 wget https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/custom-domain-setup.sh && chmod +x custom-domain-setup.sh && ./custom-domain-setup.sh
 #install xray
 wget https://${akbarvpnnnnnn}/ins-xray.sh && chmod +x ins-xray.sh && screen -S xray ./ins-xray.sh
@@ -117,7 +118,8 @@ chmod +x /etc/set.sh
 history -c
 echo "1.2" > /home/ver
 echo " "
-echo "Installation has been completed!!"echo " "
+echo "Installation has been completed!!"
+echo ""
 echo "============================================================================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "----------------------------------------------------------------------------" | tee -a log-install.txt
@@ -177,12 +179,36 @@ echo ""  | tee -a log-install.txt
 
 # Install Auto-Update System
 echo "Installing Auto-Update System..."
-wget -O install-auto-update.sh "https://raw.githubusercontent.com/Pendetot/Vpn-Installer/main/install-auto-update.sh"
-chmod +x install-auto-update.sh
-./install-auto-update.sh
-rm -f install-auto-update.sh
+cp install-auto-update.sh /tmp/install-auto-update.sh
+chmod +x /tmp/install-auto-update.sh
+/tmp/install-auto-update.sh
+rm -f /tmp/install-auto-update.sh
 
-echo " Reboot 15 Sec"
+# Install API server
+cp vpn_api_server.py /usr/local/bin/vpn_api_server.py
+chmod +x /usr/local/bin/vpn_api_server.py
+cp api-info.sh /usr/local/sbin/api-info
+chmod +x /usr/local/sbin/api-info
+if [ ! -f /root/api_token ]; then
+    head /dev/urandom | tr -dc A-Za-z0-9 | head -c32 > /root/api_token
+fi
+cat <<'EOL' > /etc/systemd/system/vpn-api.service
+[Unit]
+Description=VPN Installer API Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /usr/local/bin/vpn_api_server.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOL
+systemctl daemon-reload
+systemctl enable vpn-api.service
+systemctl start vpn-api.service
+
+echo "Installation finished. System will reboot in 15 seconds..."
 sleep 15
 rm -f setup.sh
 reboot
