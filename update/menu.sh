@@ -21,21 +21,14 @@ UPTIME=$(uptime -p 2>/dev/null || echo "N/A")
 DATE=$(date "+%Y-%m-%d %H:%M:%S")
 
 # Simple header
-echo -e "${CYAN}${BOLD}"
-echo "=================================================================="
-echo "                    ATHENA PROJECT TUNNELING"
-echo "                      Mas Ventod Edition"
-echo "=================================================================="
-echo -e "${RESET}"
+echo -e "${CYAN}${BOLD}ATHENA PROJECT TUNNELING - Mas Ventod Edition${RESET}"
+echo ""
 
 # System information
-echo -e "${WHITE}System Information:${RESET}"
-echo "=================================================================="
-echo "Host: ${HOSTNAME}"
-echo "IP Address: ${IP}"
-echo "Date: ${DATE}"
-echo "Uptime: ${UPTIME}"
-echo "=================================================================="
+echo -e "${WHITE}Host:${RESET} ${HOSTNAME}"
+echo -e "${WHITE}IP Address:${RESET} ${IP}"
+echo -e "${WHITE}Date:${RESET} ${DATE}"
+echo -e "${WHITE}Uptime:${RESET} ${UPTIME}"
 echo ""
 
 # Show running services
@@ -45,7 +38,7 @@ fi
 
 # Main menu categories
 echo -e "${WHITE}${BOLD}Main Menu Categories${RESET}"
-echo "=================================================================="
+echo -e "${GRAY}----------------------------------------------------------------${RESET}"
 echo -e "${GREEN} 1${RESET}. SSH & OpenVPN Services"
 echo -e "${GREEN} 2${RESET}. VPN Protocols (L2TP, PPTP, SSTP, WireGuard)"
 echo -e "${GREEN} 3${RESET}. Advanced Tunneling (Shadowsocks, SSR, Trojan GO)"
@@ -67,17 +60,18 @@ fi
 
 # Quick Actions
 echo -e "${WHITE}${BOLD}Quick Actions${RESET}"
-echo "=================================================================="
+echo -e "${GRAY}----------------------------------------------------------------${RESET}"
 echo -e "${GREEN} 6${RESET}. Restart All Services"
 echo -e "${GREEN} 7${RESET}. System Information"
 echo -e "${GREEN} 8${RESET}. About Script"
 echo -e "${GREEN} 9${RESET}. Auto-Update ${UPDATE_STATUS}"
+echo -e "${GREEN}10${RESET}. API Information"
 echo ""
 echo -e "${GREEN} 0${RESET}. Exit"
 echo ""
-echo "=================================================================="
+echo -e "${GRAY}----------------------------------------------------------------${RESET}"
 echo ""
-echo -e "${WHITE}${BOLD}Select option [${GREEN}0${WHITE}-${GREEN}9${WHITE}]:${RESET} \c"
+echo -e "${WHITE}${BOLD}Select option [${GREEN}0${WHITE}-${GREEN}10${WHITE}]:${RESET} \c"
 read menu
 echo ""
 
@@ -108,6 +102,9 @@ about
 ;;
 9)
 auto-update-menu
+;;
+10)
+api-info
 ;;
 0)
 clear

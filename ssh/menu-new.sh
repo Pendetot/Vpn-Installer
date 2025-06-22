@@ -23,23 +23,13 @@ IP=$(curl -s ifconfig.me 2>/dev/null || echo "N/A")
 UPTIME=$(uptime -p 2>/dev/null || echo "N/A")
 DATE=$(date "+%Y-%m-%d %H:%M:%S")
 
-# Header with AthenaProject Tunneling branding
-echo -e "${CYAN}${BOLD}"
-echo "  ╔═══════════════════════════════════════════════════════════════╗"
-echo "  ║                                                               ║"
-echo "  ║              ▄▀█ ▀█▀ █░█ █▀▀ █▄░█ ▄▀█   █▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀  ║"
-echo "  ║              █▀█ ░█░ █▀█ ██▄ █░▀█ █▀█   █▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░  ║"
-echo "  ║                                                               ║"
-echo "  ║                     Mas Ventod Edition                       ║"
-echo "  ║                                                               ║"
-echo "  ╚═══════════════════════════════════════════════════════════════╝"
-echo -e "${RESET}"
+# Simple header without ASCII art
+echo -e "${CYAN}${BOLD}ATHENA PROJECT TUNNELING - Mas Ventod Edition${RESET}"
+echo ""
 
-# System info bar
-echo -e "${GRAY}${DIM}┌─────────────────────────────────────────────────────────────────┐${RESET}"
-echo -e "${GRAY}${DIM}│${RESET} ${WHITE}Host:${RESET} ${HOSTNAME} ${GRAY}│${RESET} ${WHITE}IP:${RESET} ${IP} ${GRAY}│${RESET} ${WHITE}Date:${RESET} ${DATE} ${GRAY}${DIM}│${RESET}"
-echo -e "${GRAY}${DIM}│${RESET} ${WHITE}Uptime:${RESET} ${UPTIME}${GRAY}${DIM}                                    │${RESET}"
-echo -e "${GRAY}${DIM}└─────────────────────────────────────────────────────────────────┘${RESET}"
+# System information
+echo -e "${WHITE}Host:${RESET} ${HOSTNAME} | ${WHITE}IP:${RESET} ${IP} | ${WHITE}Date:${RESET} ${DATE}"
+echo -e "${WHITE}Uptime:${RESET} ${UPTIME}"
 echo ""
 
 # Show running services
@@ -49,7 +39,7 @@ fi
 
 # Main menu categories
 echo -e "${WHITE}${BOLD}📋 Main Menu Categories${RESET}"
-echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo -e "${GRAY}----------------------------------------------------------------${RESET}"
 echo -e "${GREEN} 1${RESET}${WHITE}.${RESET} 🔐 SSH & OpenVPN Services"
 echo -e "${GREEN} 2${RESET}${WHITE}.${RESET} 🌐 VPN Protocols (L2TP, PPTP, SSTP, WireGuard)"
 echo -e "${GREEN} 3${RESET}${WHITE}.${RESET} 🔒 Advanced Tunneling (Shadowsocks, SSR, Trojan GO)"
@@ -59,17 +49,17 @@ echo ""
 
 # Quick Actions
 echo -e "${WHITE}${BOLD}⚡ Quick Actions${RESET}"
-echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo -e "${GRAY}----------------------------------------------------------------${RESET}"
 echo -e "${GREEN} 6${RESET}${WHITE}.${RESET} 🔄 Restart All Services"
 echo -e "${GREEN} 7${RESET}${WHITE}.${RESET} 📊 System Information"
 echo -e "${GREEN} 8${RESET}${WHITE}.${RESET} ℹ️  About Script"
+echo -e "${GREEN} 9${RESET}${WHITE}.${RESET} 🔑 API Information"
 echo ""
-
 echo -e "${GREEN} 0${RESET}${WHITE}.${RESET} 🚪 Exit"
 echo ""
-echo -e "${GRAY}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+echo -e "${GRAY}----------------------------------------------------------------${RESET}"
 echo ""
-echo -e "${WHITE}${BOLD}Select option [${GREEN}0${WHITE}-${GREEN}8${WHITE}]:${RESET} \\c"
+echo -e "${WHITE}${BOLD}Select option [${GREEN}0${WHITE}-${GREEN}9${WHITE}]:${RESET} \\c"
 read menu
 echo ""
 
@@ -97,6 +87,9 @@ info
 ;;
 8)
 about
+;;
+9)
+api-info
 ;;
 0)
 clear

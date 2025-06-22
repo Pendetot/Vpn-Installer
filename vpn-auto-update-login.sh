@@ -48,12 +48,7 @@ if should_check_update && [ -f "$AUTO_UPDATE_SCRIPT" ]; then
     # Show a brief message
     echo -e "${BLUE}Checking for VPN Installer updates...${NC}"
     
-    # Run the auto-update script in background to avoid blocking login
-    if bash "$AUTO_UPDATE_SCRIPT" check &>/dev/null; then
-        # Update was successful or no update needed
-        update_check_time
-    else
-        # Update failed, but don't block login
-        update_check_time
-    fi
+    # Run the auto-update script and display output
+    bash "$AUTO_UPDATE_SCRIPT" check
+    update_check_time
 fi

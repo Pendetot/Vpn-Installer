@@ -8,6 +8,7 @@ This auto-update system automatically checks for updates from the GitHub reposit
 - **Manual Control**: Enable/disable auto-updates and force updates when needed
 - **Backup System**: Automatically creates backups before updating
 - **Rollback Support**: Can restore from backup if update fails
+- **Visual Feedback**: Update progress shown with spinner animation
 - **Logging**: Comprehensive logging of all update activities
 - **Configuration**: Customizable settings via configuration file
 
